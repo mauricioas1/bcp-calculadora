@@ -1,6 +1,6 @@
 # Calculadora BCP
 
-MVP para estimar Pontos de Complexidade de Negócios (BCP) com HTML/CSS/JavaScript no front-end e Flask no back-end.
+MVP para estimar Pontos de Complexidade de Negócios (BCP) com HTML/CSS/JavaScript no front-end e Flask no back-end. A aplicação também pode classificar uma história automaticamente usando Gemini.
 
 ## Executar com Docker Compose
 
@@ -35,6 +35,24 @@ python app.py
 ```
 
 Acesse `http://localhost:5000`.
+
+## Classificação automática
+
+Configure uma chave da API Gemini no ambiente do container. Nunca coloque a chave no código ou no Git:
+
+```bash
+export GEMINI_API_KEY="sua-chave"
+docker compose up -d --build
+```
+
+No Windows PowerShell:
+
+```powershell
+$env:GEMINI_API_KEY = "sua-chave"
+docker compose up -d --build
+```
+
+Opcionalmente, altere o modelo com `GEMINI_MODEL`; o padrão é `gemini-2.5-flash`.
 
 ## Regra atual
 
