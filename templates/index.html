@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora BCP</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Pontos de Complexidade de Negócios</p>
+        <h1>Calculadora BCP</h1>
+        <p class="intro">Classifique uma história pela complexidade de negócio e obtenha uma estimativa objetiva.</p>
+      </div>
+      <div class="scale" aria-label="Escala de pontos Fibonacci">
+        <span>XS <b>1</b></span><span>S <b>2</b></span><span>M <b>3</b></span><span>L <b>5</b></span><span>XL <b>8</b></span>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <form id="bcp-form" class="calculator">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Nova história</p>
+            <h2>Onde está a complexidade?</h2>
+          </div>
+          <span class="required">3 dimensões</span>
+        </div>
+
+        <label class="field-label" for="story-name">Nome da história</label>
+        <input id="story-name" name="story-name" type="text" placeholder="Ex.: Aprovar solicitação de crédito" maxlength="100" required>
+
+        <div class="dimension-grid">
+          <fieldset class="dimension" data-category="business_rules">
+            <legend><span class="number">01</span> Regras de negócio</legend>
+            <p>Fórmulas, validações e decisões do processo.</p>
+            <select aria-label="Complexidade das regras de negócio" required>
+              <option value="">Selecione</option><option value="XS">XS · 1</option><option value="S">S · 2</option><option value="M">M · 3</option><option value="L">L · 5</option><option value="XL">XL · 8</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="dimension" data-category="interface_elements">
+            <legend><span class="number">02</span> Elementos de interface</legend>
+            <p>Telas, formulários e elementos estáticos ou dinâmicos.</p>
+            <select aria-label="Complexidade dos elementos de interface" required>
+              <option value="">Selecione</option><option value="XS">XS · 1</option><option value="S">S · 2</option><option value="M">M · 3</option><option value="L">L · 5</option><option value="XL">XL · 8</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="dimension" data-category="boundaries">
+            <legend><span class="number">03</span> Integrações e fronteiras</legend>
+            <p>Banco, dispositivos e serviços internos ou remotos.</p>
+            <select aria-label="Complexidade das integrações e fronteiras" required>
+              <option value="">Selecione</option><option value="XS">XS · 1</option><option value="S">S · 2</option><option value="M">M · 3</option><option value="L">L · 5</option><option value="XL">XL · 8</option>
+            </select>
+          </fieldset>
+        </div>
+
+        <button class="primary-button" type="submit">Calcular BCP <span aria-hidden="true">→</span></button>
+        <p id="form-message" class="form-message" role="alert"></p>
+      </form>
+
+      <aside class="result-panel" aria-live="polite">
+        <p class="eyebrow">Resultado atual</p>
+        <div class="result-number"><span id="current-total">0</span> <small>BCP</small></div>
+        <p class="result-copy">Some as três dimensões para obter a complexidade da história.</p>
+        <div class="breakdown" id="breakdown">
+          <div><span>Regras de negócio</span><b>—</b></div>
+          <div><span>Elementos de interface</span><b>—</b></div>
+          <div><span>Integrações e fronteiras</span><b>—</b></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="history-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Memória da sessão</p><h2>Histórias calculadas</h2></div>
+        <strong id="session-total">0 BCP</strong>
+      </div>
+      <div id="history" class="history-list">
+        <p class="empty-state">As histórias que você calcular aparecerão aqui.</p>
+      </div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

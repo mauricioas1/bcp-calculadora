@@ -1,0 +1,7 @@
+services:
+  bcp:
+    build: .
+    container_name: bcp-calculadora
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
